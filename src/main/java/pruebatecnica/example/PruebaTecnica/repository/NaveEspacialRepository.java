@@ -19,7 +19,6 @@ public interface NaveEspacialRepository extends JpaRepository<NaveEspacial,Long>
 
     List<NaveEspacial> findNaveEspacialByName(String N);
 
-//    @Query("SELECT N FROM NaveEspacial N WHERE N.id = :nave")
-//    @EntityGraph(value = "nave.graph",type = EntityGraph.EntityGraphType.LOAD)
-//    Optional<NaveEspacial> findExistingRegister(String NaveEspacial);
+
+
 }

@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class NaveEspacial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private int weigth;
     private String yearOpen;
@@ -41,10 +41,10 @@ public class NaveEspacial {
     }
 
     public int getId() {
-        return id;
+        return Math.toIntExact(id);
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

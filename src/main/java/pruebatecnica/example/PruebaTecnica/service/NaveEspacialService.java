@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import pruebatecnica.example.PruebaTecnica.interfaces.INaveEspacial;
 import pruebatecnica.example.PruebaTecnica.model.NaveEspacial;
 import pruebatecnica.example.PruebaTecnica.repository.NaveEspacialRepository;
 
@@ -19,47 +18,52 @@ import java.util.Optional;
 public class NaveEspacialService implements pruebatecnica.example.PruebaTecnica.interfaceService.NaveEspacialService {
 
     @Autowired
-    private NaveEspacialRepository nave;
+    private NaveEspacialRepository _naveRepository;
 
 
     @Override
     public Page<NaveEspacial> listar(String query, Integer page, Integer size) {
-        long countNaves = nave.count();
+        long countNaves = _naveRepository.count();
         int sizeNotNull = size == null ? Math.toIntExact(countNaves) : size;
 
         Pageable pageable = PageRequest.of(page, sizeNotNull);
         if (!query.equals("") ) {
-            return nave.navesFilter(query, pageable);
+            return _naveRepository.navesFilter(query, pageable);
         } else {
-            return nave.navesFilter(query, pageable);
+            return _naveRepository.navesFilter(query, pageable);
         }
 
     }
 
     @Override
-    public Optional<NaveEspacial> listarId(int id) {
-        return Optional.empty();
+    public Optional<NaveEspacial> listarId(Long id) {
+        return _naveRepository.findById(id);
+    }
+
+    @Override
+    public List<NaveEspacial> findByName(String nombre) {
+        return _naveRepository.findNaveEspacialByName(nombre);
     }
 
     @Override
     public void save(NaveEspacial NaveEspacial) {
-       nave.save(NaveEspacial);
+       _naveRepository.save(NaveEspacial);
     }
 
     @Override
     public void delete(Long id) {
-        nave.deleteById(id);
+        _naveRepository.deleteById(id);
     }
 
     @Override
     public void modificarNaveEspacial(NaveEspacial naveEspacial, Long id) {
-        Optional<NaveEspacial> navesEspaciales = nave.findById(id);
+        Optional<NaveEspacial> navesEspaciales = _naveRepository.findById(id);
 
         if (navesEspaciales.isEmpty()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Esta Nave Espacial no Existe");
         }
 
-        List<NaveEspacial> searchN = nave.findNaveEspacialByName(naveEspacial.getName());
+        List<NaveEspacial> searchN = _naveRepository.findNaveEspacialByName(naveEspacial.getName());
         NaveEspacial naveUpdate = navesEspaciales.get();
 
         if (!searchN.isEmpty()) {

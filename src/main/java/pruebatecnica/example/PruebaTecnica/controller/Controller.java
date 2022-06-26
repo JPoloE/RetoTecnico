@@ -10,6 +10,9 @@ import org.springframework.web.server.ResponseStatusException;
 import pruebatecnica.example.PruebaTecnica.interfaceService.NaveEspacialService;
 import pruebatecnica.example.PruebaTecnica.model.NaveEspacial;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/naves")
 public class Controller {
@@ -46,6 +49,7 @@ public class Controller {
         }
     }
 
+    @PutMapping("/{id}/modificar")
     public ResponseEntity<String>updateNave(@RequestBody NaveEspacial naveEspacial, Long id){
         try {
            service.modificarNaveEspacial(naveEspacial,id);
@@ -55,5 +59,18 @@ public class Controller {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<NaveEspacial>> findNaveEspacial(@PathVariable Long id){
+        return new ResponseEntity<>(service.listarId(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<List<NaveEspacial>>findByName(@PathVariable String nombre){
+        try {
+            return new ResponseEntity<>(service.findByName(nombre),HttpStatus.OK);
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        }
+    }
 
 }
