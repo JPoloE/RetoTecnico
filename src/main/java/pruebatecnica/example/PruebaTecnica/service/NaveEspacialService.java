@@ -47,8 +47,8 @@ public class NaveEspacialService implements pruebatecnica.example.PruebaTecnica.
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete(Long id) {
+        nave.deleteById(id);
     }
 
     @Override

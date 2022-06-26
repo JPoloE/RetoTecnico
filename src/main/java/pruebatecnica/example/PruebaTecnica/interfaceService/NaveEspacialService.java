@@ -12,8 +12,7 @@ public interface NaveEspacialService {
     public Page<NaveEspacial> listar(String query, Integer page, Integer size);
     public Optional<NaveEspacial> listarId(int id);
     public void save(NaveEspacial N);
-    public void delete(int id);
-
+    public void delete(Long id);
     public void modificarNaveEspacial(NaveEspacial naveEspacial, Long id);
 
 }
