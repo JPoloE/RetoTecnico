@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<div class="container m-4">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>NOMBRE</th>
+            <th>MISION</th>
+            <th>TIPO</th>
+            <th>PESO</th>
+            <th>PAIS DE ORIGEN</th>
+            <th>AÑO DE INAUGURACIÓN</th>
+            <th>AÑO DE RETIRO</th>
+            <th>FUERZA</th>
+            <th>COMBUSTIBLE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="naveespacial:${naveEspacial}">
+            <td th:text="${naveespacial.name}"></td>
+            <td th:text="${naveespacial.mision}"></td>
+            <td th:text="${naveespacial.tipe}"></td>
+            <td th:text="${naveespacial.weigth}"></td>
+            <td th:text="${naveespacial.country}"></td>
+            <td th:text="${naveespacial.year_open}"></td>
+            <td th:text="${naveespacial.year_close}"></td>
+            <td th:text="${naveespacial.force}"></td>
+            <td th:text="${naveespacial.combustible}"></td>
+            <td>
+                <a class="btn btn-warning">Editar</a>
+                <a class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
