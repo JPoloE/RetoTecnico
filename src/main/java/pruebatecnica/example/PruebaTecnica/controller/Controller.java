@@ -46,4 +46,14 @@ public class Controller {
         }
     }
 
+    public ResponseEntity<String>updateNave(@RequestBody NaveEspacial naveEspacial, Long id){
+        try {
+           service.modificarNaveEspacial(naveEspacial,id);
+           return new ResponseEntity<>("Nave Espacial Modificada",HttpStatus.CREATED);
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        }
+    }
+
+
 }
