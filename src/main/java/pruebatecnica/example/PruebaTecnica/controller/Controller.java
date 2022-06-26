@@ -10,11 +10,13 @@ import org.springframework.web.server.ResponseStatusException;
 import pruebatecnica.example.PruebaTecnica.interfaceService.NaveEspacialService;
 import pruebatecnica.example.PruebaTecnica.model.NaveEspacial;
 
+import java.io.*;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/naves")
+@RequestMapping("/api/v1/")
+@CrossOrigin("*")
 public class Controller {
 
     private final NaveEspacialService service;
@@ -39,7 +41,7 @@ public class Controller {
         return new ResponseEntity<>("Se registro de forma Satisfactoria", HttpStatus.CREATED);
     }
 
-    @PostMapping ("/{id}/eliminar")
+    @DeleteMapping ("/{id}/eliminar")
     public ResponseEntity<String> deleteNaveEspacial(@PathVariable Long id){
         try{
             service.delete(id);
@@ -64,13 +66,13 @@ public class Controller {
         return new ResponseEntity<>(service.listarId(id),HttpStatus.OK);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<List<NaveEspacial>>findByName(@PathVariable String nombre){
-        try {
-            return new ResponseEntity<>(service.findByName(nombre),HttpStatus.OK);
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
-        }
-    }
+//    @GetMapping("/{name}")
+//    public ResponseEntity<List<NaveEspacial>>findByName(@PathVariable String nombre){
+//        try {
+//            return new ResponseEntity<>(service.findByName(nombre),HttpStatus.OK);
+//        }catch (Exception exception){
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+//        }
+//    }
 
 }

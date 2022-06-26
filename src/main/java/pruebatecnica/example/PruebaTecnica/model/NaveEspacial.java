@@ -40,8 +40,8 @@ public class NaveEspacial {
         this.tipe = tipe;
     }
 
-    public int getId() {
-        return Math.toIntExact(id);
+    public Long getId() {
+        return (id);
     }
 
     public void setId(Long id) {
