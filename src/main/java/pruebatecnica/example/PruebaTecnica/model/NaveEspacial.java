@@ -1,6 +1,8 @@
 package pruebatecnica.example.PruebaTecnica.model;
 
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +23,7 @@ public class NaveEspacial {
     private String tipe;
     private String combustible;
     private String country;
+
 
     public NaveEspacial() {
     }

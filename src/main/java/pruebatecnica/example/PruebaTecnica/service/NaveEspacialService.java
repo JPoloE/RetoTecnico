@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import pruebatecnica.example.PruebaTecnica.interfaces.INaveEspacial;
 import pruebatecnica.example.PruebaTecnica.model.NaveEspacial;
 import pruebatecnica.example.PruebaTecnica.repository.NaveEspacialRepository;
 
@@ -21,6 +22,7 @@ public class NaveEspacialService implements pruebatecnica.example.PruebaTecnica.
 
     @Autowired
     private NaveEspacialRepository _naveRepository;
+    private INaveEspacial _naveRepository2;
 
 
     //Metodo Listar
@@ -75,25 +77,10 @@ public class NaveEspacialService implements pruebatecnica.example.PruebaTecnica.
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Esta Nave Espacial no Existe");
         }
 
-        List<NaveEspacial> searchN = _naveRepository.findNaveEspacialByName(naveEspacial.getName());
-        NaveEspacial naveUpdate = navesEspaciales.get();
+        naveEspacial.setId(id);
+        _naveRepository.save(naveEspacial);
 
-        if (!searchN.isEmpty()) {
-            if (naveUpdate.getName().equals(naveEspacial.getName())) {
-                if (searchN.get(0).getName().equals(naveEspacial.getName())) {
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Esta Nave Espacial ya Existe");
-                }
-            }
-        }
 
-        naveUpdate.setName(naveEspacial.getName());
-        naveUpdate.setCountry(naveEspacial.getCountry());
-        naveUpdate.setMision(naveEspacial.getMision());
-        naveUpdate.setCombustible(naveEspacial.getCombustible());
-        naveUpdate.setTipe(naveEspacial.getTipe());
-        naveUpdate.setWeigth(naveEspacial.getWeigth());
-        naveUpdate.setYearOpen(naveEspacial.getYearOpen());
-        naveUpdate.setYearClose(naveEspacial.getYearClose());
 
     }
 }

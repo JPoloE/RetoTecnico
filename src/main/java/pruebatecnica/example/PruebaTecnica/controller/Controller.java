@@ -39,7 +39,7 @@ public class Controller {
     @PostMapping("/save")
     public ResponseEntity<String> guardarNave(@RequestBody NaveEspacial naveEspacial){
         service.save(naveEspacial);
-        return new ResponseEntity<>("Se registro de forma Satisfactoria", HttpStatus.CREATED);
+        return new ResponseEntity<>("Se registro de forma Satisfactoria", HttpStatus.OK);
     }
 
     //Eliminar Nave espacial
@@ -54,11 +54,11 @@ public class Controller {
     }
 
     //Modificar Nave espacial
-    @PutMapping("/{id}/modificar")
-    public ResponseEntity<String>updateNave(@RequestBody NaveEspacial naveEspacial, Long id){
+    @PostMapping("/{id}/modificar")
+    public ResponseEntity<String>updateNave(@RequestBody NaveEspacial naveEspacial, @PathVariable Long id){
         try {
            service.modificarNaveEspacial(naveEspacial,id);
-           return new ResponseEntity<>("Nave Espacial Modificada",HttpStatus.CREATED);
+           return new ResponseEntity<>("Nave Espacial Modificada",HttpStatus.OK);
         }catch (Exception exception){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
         }
