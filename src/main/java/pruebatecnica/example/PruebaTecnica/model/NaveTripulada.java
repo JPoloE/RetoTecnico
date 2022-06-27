@@ -2,6 +2,7 @@ package pruebatecnica.example.PruebaTecnica.model;
 
 
 public class NaveTripulada extends NaveEspacial{
+    //Nave Tripulada
     private int people;
     private String orbite;
 
@@ -10,6 +11,7 @@ public class NaveTripulada extends NaveEspacial{
 
     }
 
+    //Contructores
     public int getPeople() {
         return people;
     }

@@ -35,22 +35,25 @@ public class Controller {
         return new ResponseEntity<>(service.listar(q, page, size), HttpStatus.OK);
     }
 
+    //Guardar Nave espacial
     @PostMapping("/save")
     public ResponseEntity<String> guardarNave(@RequestBody NaveEspacial naveEspacial){
         service.save(naveEspacial);
         return new ResponseEntity<>("Se registro de forma Satisfactoria", HttpStatus.CREATED);
     }
 
+    //Eliminar Nave espacial
     @DeleteMapping ("/{id}/eliminar")
     public ResponseEntity<String> deleteNaveEspacial(@PathVariable Long id){
         try{
             service.delete(id);
-            return new ResponseEntity<>("Nave Espacial Eliminada",HttpStatus.CREATED);
+            return new ResponseEntity<>("Nave Espacial Eliminada",HttpStatus.OK);
         }catch (Exception exception){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
         }
     }
 
+    //Modificar Nave espacial
     @PutMapping("/{id}/modificar")
     public ResponseEntity<String>updateNave(@RequestBody NaveEspacial naveEspacial, Long id){
         try {
@@ -60,19 +63,11 @@ public class Controller {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
         }
     }
-
+    //Buscar por ID
     @GetMapping("/{id}")
     public ResponseEntity<Optional<NaveEspacial>> findNaveEspacial(@PathVariable Long id){
         return new ResponseEntity<>(service.listarId(id),HttpStatus.OK);
     }
 
-//    @GetMapping("/{name}")
-//    public ResponseEntity<List<NaveEspacial>>findByName(@PathVariable String nombre){
-//        try {
-//            return new ResponseEntity<>(service.findByName(nombre),HttpStatus.OK);
-//        }catch (Exception exception){
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
-//        }
-//    }
 
 }

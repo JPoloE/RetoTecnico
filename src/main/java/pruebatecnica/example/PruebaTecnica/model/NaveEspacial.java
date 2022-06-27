@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "nave_espacial")
 @NamedEntityGraph(name = "nave.graph")
+
+//Nave Espacial
 public class NaveEspacial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +25,7 @@ public class NaveEspacial {
     public NaveEspacial() {
     }
 
+    //Contructores
 
     public String getTipe() {
         return tipe;

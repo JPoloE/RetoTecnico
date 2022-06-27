@@ -2,7 +2,7 @@ package pruebatecnica.example.PruebaTecnica.model;
 
 
 public class NaveNotripulada extends NaveEspacial{
-
+    //Nave no tripulada
     private String explorer;
     private String orbiteBody;
 
@@ -10,7 +10,7 @@ public class NaveNotripulada extends NaveEspacial{
 
     }
 
-
+    //Contructores
     public String getExplorer() {
         return explorer;
     }

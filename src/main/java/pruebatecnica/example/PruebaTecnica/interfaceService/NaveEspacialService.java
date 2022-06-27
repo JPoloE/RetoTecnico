@@ -8,11 +8,19 @@ import java.util.Optional;
 
 
 public interface NaveEspacialService {
+
+    //Servicios
+
     public Page<NaveEspacial> listar(String query, Integer page, Integer size);
+
     public Optional<NaveEspacial> listarId(Long id);
+
     public List<NaveEspacial> findByName(String nombre);
+
     public void save(NaveEspacial N);
+
     public void delete(Long id);
+
     public void modificarNaveEspacial(NaveEspacial naveEspacial, Long id);
 
 

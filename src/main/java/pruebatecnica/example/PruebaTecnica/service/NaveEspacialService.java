@@ -17,10 +17,13 @@ import java.util.Optional;
 @Service
 public class NaveEspacialService implements pruebatecnica.example.PruebaTecnica.interfaceService.NaveEspacialService {
 
+    //Implementacion de los servicios
+
     @Autowired
     private NaveEspacialRepository _naveRepository;
 
 
+    //Metodo Listar
     @Override
     public Page<NaveEspacial> listar(String query, Integer page, Integer size) {
         long countNaves = _naveRepository.count();
@@ -35,27 +38,35 @@ public class NaveEspacialService implements pruebatecnica.example.PruebaTecnica.
 
     }
 
+
+    //Metodo Buscar por ID
     @Override
     public Optional<NaveEspacial> listarId(Long id) {
         return _naveRepository.findById(id);
     }
 
+
+    //Metodo Buscar por Nombre
     @Override
     public List<NaveEspacial> findByName(String nombre) {
         return _naveRepository.findNaveEspacialByName(nombre);
     }
 
+
+    //Metodo Guardar
     @Override
     public void save(NaveEspacial NaveEspacial) {
        _naveRepository.save(NaveEspacial);
     }
 
+    //Metodo Eliminar
     @Override
     public void delete(Long id) {
         _naveRepository.deleteById(id);
         System.out.println(id);
     }
 
+    //Metodo Modificar
     @Override
     public void modificarNaveEspacial(NaveEspacial naveEspacial, Long id) {
         Optional<NaveEspacial> navesEspaciales = _naveRepository.findById(id);
